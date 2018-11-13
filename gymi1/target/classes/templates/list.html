@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    
+    <title>Gym Application</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<th width="5%"><form th:action="@{/logout}" method="post">
+				<input type="submit" value="Logout" /></form>
+				<div class="container">
+        <div class="jumbotron">
+	<h1>Movements</h1>
+	<table>
+		<tr>
+			<th>Day</th>
+			<th>Repeats</th>
+			<th>Sets</th>
+			<th>Kg</th>
+			<th>Comment</th>
+		</tr>
+
+		<tr th:each="sali : ${salit}">
+			<td th:text="${sali.day}">Day</td>
+			<td th:text="${sali.toistot}">Repeats</td>
+			<td th:text="${sali.sarjat}">Sets</td>
+			<td th:text="${sali.kg}">Kg</td>
+			<td th:text="${sali.kommentti}">Comment</td>
+			<td th:text="${sali.liike.liikeName}">Movement</td>
+			<td><a class="btn btn-danger"
+			th:href="@{/delete/{id}(id=${sali.id})}">Delete</a></td>
+			<td><a class="btn btn-success"
+				th:href="@{/modify/{id}(id=${sali.id})}">Edit</a></td>
+			
+		</tr>
+	</table>
+
+	<a href="/add" class="btn btn-primary">Add movemement</a>
+	</div>
+	</div>
+
+</body>
+</html>
